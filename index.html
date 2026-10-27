@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Magnetix — офисные стулья и кресла</title>
+<meta name="description" content="Эргономичные офисные стулья и кресла для дома и офиса. Заказ через WhatsApp, помощь с выбором, доставка.">
+<style>
+:root{--bg:#fff;--soft:#f4f4f4;--ink:#111;--mut:#555;--dark:#1a1a1a;--graph:#2a2a2a;--acc:#111;--acc2:#000;--line:#e2e2e2;--r:16px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+h2{font-size:clamp(26px,4vw,38px);line-height:1.15;margin-bottom:12px}
+.lead{color:var(--mut);max-width:620px;margin-bottom:36px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;text-align:center;border-radius:12px;font-weight:600;font-size:15px;border:2px solid transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-a{background:var(--acc);color:#fff}.btn-a:hover{background:var(--acc2)}
+header .btn-a,.hero .btn-a,#contacts .btn-a,.fab{background:#fff;color:#111}
+header .btn-a:hover,.hero .btn-a:hover,#contacts .btn-a:hover,.fab:hover{background:#e5e5e5}
+.fab{box-shadow:0 4px 16px rgba(0,0,0,.35)}
+.adv span,.clist a{filter:grayscale(1)}
+.btn-o{border-color:#fff;color:#fff}.btn-o:hover{background:#fff;color:var(--dark)}
+.btn-d{background:var(--dark);color:#fff}.btn-d:hover{background:#000}
+header{position:sticky;top:0;z-index:50;background:rgba(17,17,17,.96);backdrop-filter:blur(8px);color:#fff;padding-top:env(safe-area-inset-top,0)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.3px}
+.logo i{width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;font-style:normal;color:#111}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav a{color:#d5d9de;font-size:15px}nav a:hover{color:#fff}
+.nav .btn{padding:10px 18px;font-size:14px}
+.hero{background:linear-gradient(120deg,rgba(17,17,17,.93),rgba(17,17,17,.62)),var(--hero,linear-gradient(135deg,#333,#111)) center/cover;color:#fff;padding:120px 0 110px}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.08;max-width:760px;margin-bottom:18px}
+.hero p{font-size:clamp(17px,2.2vw,21px);color:#d5d9de;max-width:560px;margin-bottom:32px}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap}
+.grid{display:grid;gap:20px}
+.adv{grid-template-columns:repeat(5,1fr)}
+.adv div{padding:24px 18px;border:1px solid var(--line);border-radius:var(--r);text-align:center;font-weight:600;font-size:15px}
+.adv span{display:block;font-size:28px;margin-bottom:8px}
+#catalog{background:var(--soft)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.chip{padding:9px 18px;border-radius:99px;border:1px solid var(--line);background:#fff;cursor:pointer;font:500 14px inherit;font-family:inherit}
+.chip.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.cat{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.card{background:#fff;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.1)}
+.ph{aspect-ratio:4/5;background:linear-gradient(135deg,#eee,#d4d4d4);display:grid;place-items:center;color:#8a929c;font-size:13px;text-align:center;padding:0;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.th{display:flex;gap:6px;padding:10px 18px 0}.th img{width:46px;height:46px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:.55;border:2px solid transparent}.th img.on{opacity:1;border-color:var(--ink)}.tg{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+.cb{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.cb h3{font-size:18px}.cb p{color:var(--mut);font-size:14px;flex:1}
+.price{font-weight:700;color:var(--dark)}
+.empty{display:none;padding:30px;text-align:center;color:var(--mut)}
+.why{grid-template-columns:repeat(4,1fr)}
+.why div{background:var(--graph);color:#fff;border-radius:var(--r);padding:26px}
+.why h3{font-size:18px;margin-bottom:6px;color:#fff}.why p{font-size:14px;color:#c7ccd2}
+.steps{grid-template-columns:repeat(4,1fr);counter-reset:s}
+.steps div{position:relative;padding:28px 20px 20px;border:1px solid var(--line);border-radius:var(--r);counter-increment:s}
+.steps div:before{content:counter(s);position:absolute;top:-16px;left:20px;width:34px;height:34px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:grid;place-items:center}
+.about{grid-template-columns:1.1fr 1fr;align-items:center;gap:48px}
+.about .ph{aspect-ratio:1/1;border-radius:var(--r)}
+#contacts{background:var(--dark);color:#fff}
+#contacts .lead{color:#c7ccd2}
+.cont{grid-template-columns:1fr 1fr;gap:40px}
+.clist{display:grid;gap:12px;align-content:start}
+.clist a{display:flex;gap:12px;padding:14px 18px;border-radius:12px;background:var(--graph);align-items:center}
+.clist a:hover{background:#3a3a3a}
+form{display:grid;gap:12px;background:var(--graph);padding:24px;border-radius:var(--r)}
+input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #4a4a4a;background:#1a1a1a;color:#fff;font:16px inherit;font-family:inherit}
+footer{background:#0d0d0d;color:#aab0b8;padding:28px 0 calc(28px + env(safe-area-inset-bottom,0));font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer a{margin-right:16px}footer a:hover{color:#fff}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0));z-index:40;display:none}
+@media(max-width:900px){nav{display:none}.adv,.why,.steps{grid-template-columns:1fr 1fr}.about,.cont{grid-template-columns:1fr}section{padding:56px 0}.hero{padding:72px 0}.fab{display:inline-flex}}
+@media(max-width:520px){.adv,.why,.steps{grid-template-columns:1fr}.nav .btn{display:none}.hero .btn{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#top"><i>M</i>Magnetix</a>
+<nav><ul><li><a href="#catalog">Каталог</a></li><li><a href="#about">О нас</a></li><li><a href="#delivery">Доставка</a></li><li><a href="#contacts">Контакты</a></li></ul></nav>
+<a class="btn btn-a wa">Заказать в WhatsApp</a>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+<h1>Офисные стулья для комфорта и продуктивной работы</h1>
+<p>Эргономичные, стильные и надежные стулья для дома и офиса</p>
+<div class="row"><a class="btn btn-a" href="#catalog">Смотреть каталог</a><a class="btn btn-o wa">Написать в WhatsApp</a></div>
+</div></div>
+
+<section><div class="wrap">
+<h2>Что вы получаете</h2><p class="lead">Стул, на котором удобно работать долгие часы.</p>
+<div class="grid adv">
+<div><span>🦴</span>Эргономичная поддержка спины</div>
+<div><span>↕️</span>Регулировка высоты и наклона</div>
+<div><span>🧵</span>Прочные материалы</div>
+<div><span>🚚</span>Доставка и сборка</div>
+<div><span>✅</span>Гарантия качества</div>
+</div></div></section>
+
+<section id="catalog"><div class="wrap">
+<h2>Каталог</h2><p class="lead">Нажмите «Заказать» — откроется WhatsApp с готовым сообщением.</p>
+<div class="chips" id="chips"></div>
+<div class="grid cat" id="cat"></div>
+<div class="empty" id="empty">В этой категории пока нет моделей. <a class="wa" style="color:var(--ink);text-decoration:underline;cursor:pointer">Спросите нас в WhatsApp</a></div>
+</div></section>
+
+<section><div class="wrap">
+<h2>Почему выбирают нас</h2><p class="lead">Помогаем выбрать стул под вашу работу и бюджет.</p>
+<div class="grid why">
+<div><h3>Опыт продаж</h3><p>Знаем ассортимент и подскажем, какая модель подойдёт именно вам.</p></div>
+<div><h3>Официальные поставки</h3><p>Работаем с проверенными поставщиками.</p></div>
+<div><h3>Помощь с выбором</h3><p>Расскажем о различиях моделей и подберём вариант под задачу.</p></div>
+<div><h3>Быстрая доставка</h3><p>Уточним сроки и условия при заказе.</p></div>
+</div></div></section>
+
+<section id="delivery" style="padding-top:0"><div class="wrap">
+<h2>Как заказать</h2><p class="lead">Четыре простых шага.</p>
+<div class="grid steps">
+<div>Выберите стул в каталоге</div>
+<div>Нажмите «Заказать в WhatsApp»</div>
+<div>Мы уточним наличие, цену и доставку</div>
+<div>Получите стул с доставкой или самовывозом</div>
+</div></div></section>
+
+<section id="about" style="background:var(--soft)"><div class="wrap grid about">
+<div><h2>О магазине</h2>
+<p style="color:var(--mut);margin-bottom:14px">Magnetix — магазин офисных стульев и кресел в Ереване. Мы подбираем удобные модели для работы и дома: от практичных тканевых до кожаных и игровых.</p>
+<p style="color:var(--mut);margin-bottom:24px">Напишите нам — подскажем, какой стул подойдёт по росту, задачам и бюджету, и уточним наличие.</p>
+<a class="btn btn-d wa">Получить консультацию</a></div>
+<div class="ph" id="aboutPh">Фото магазина или стульев</div>
+</div></section>
+
+<section id="contacts"><div class="wrap">
+<h2>Контакты</h2><p class="lead">Свяжитесь удобным способом или оставьте заявку.</p>
+<div class="grid cont">
+<div class="clist">
+<a id="cTel">📞 <span>Позвонить</span></a>
+<a class="wa">💬 <span>WhatsApp</span></a>
+<a id="cTg" target="_blank" rel="noopener">✈️ <span>Telegram</span></a>
+<a href="https://www.instagram.com/magnetix.am" target="_blank" rel="noopener">📷 <span>Instagram @magnetix.am</span></a>
+<a id="cMap" target="_blank" rel="noopener">📍 <span>Открыть в Google Maps</span></a>
+</div>
+<form id="f">
+<input id="fn" placeholder="Ваше имя" required>
+<input id="fp" type="tel" placeholder="Телефон" required>
+<select id="fs"></select>
+<button class="btn btn-a" type="submit">Отправить заявку в WhatsApp</button>
+</form>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">
+<div>© <span id="y"></span> Magnetix. Все права защищены.</div>
+<div><a href="https://www.instagram.com/magnetix.am" target="_blank" rel="noopener">Instagram</a><a class="wa" style="cursor:pointer">WhatsApp</a><a id="fTg" target="_blank" rel="noopener">Telegram</a></div>
+</div></footer>
+
+<a class="btn btn-a fab wa">💬 WhatsApp</a>
+
+<script>
+/* ============ НАСТРОЙКИ — заполните своими данными из Instagram ============ */
+var CFG={
+  waNumber:"37499503009",        // WhatsApp в формате 37400000000 (без + и пробелов)
+  phone:"+374 99 503009",           // например +37400000000
+  telegram:"",        // имя пользователя без @
+  mapsQuery:"Magnetix Yerevan", // адрес магазина для Google Maps
+  hero:"images/chair-2.jpg",            // путь к фото, напр. "img/hero.jpg"
+  aboutPhoto:"images/chair-6.jpg"       // путь к фото, напр. "img/about.jpg"
+};
+/* Товары: images — ["images/chair-1.jpg"], price — "45 000 ֏" или "" (тогда «Уточнить цену»).
+   tags: home, office, ergo, leather, fabric, gaming
+   Данные взяты из Instagram @magnetix.am. */
+var PRODUCTS=[
+ {
+  "name": "A203 Moca",
+  "cat": "Кресло руководителя",
+  "desc": "Высокая спинка с подголовником и поясничным валиком, хромированная крестовина на колёсиках. Цвет мокко.",
+  "price": "90 000 AMD",
+  "images": [
+   "images/chair-1.jpg",
+   "images/chair-2.jpg",
+   "images/chair-3.jpg",
+   "images/chair-6.jpg"
+  ],
+  "tags": [
+   "office",
+   "ergo",
+   "leather"
+  ]
+ },
+ {
+  "name": "A203 Grey",
+  "cat": "Кресло руководителя",
+  "desc": "Та же модель A203 в сером цвете: подголовник, поясничный валик, хромированная крестовина.",
+  "price": "90 000 AMD",
+  "images": [
+   "images/chair-15.jpg"
+  ],
+  "tags": [
+   "office",
+   "ergo",
+   "leather"
+  ]
+ },
+ {
+  "name": "9021A Brown",
+  "cat": "Кресло руководителя",
+  "desc": "Высокая мягкая спинка, широкое сиденье, мягкие подлокотники и выдвижная подставка для ног. Коричневый цвет.",
+  "price": "95 000 AMD",
+  "images": [
+   "images/chair-5.jpg",
+   "images/chair-9.jpg",
+   "images/chair-4.jpg",
+   "images/chair-8.jpg"
+  ],
+  "tags": [
+   "home",
+   "office",
+   "ergo",
+   "leather"
+  ]
+ },
+ {
+  "name": "6935 A",
+  "cat": "Кресло руководителя",
+  "desc": "Высокая спинка с подголовником и мягкие подлокотники. Цвет коричневый.",
+  "price": "110 000 AMD",
+  "images": [
+   "images/chair-10.jpg"
+  ],
+  "tags": [
+   "office",
+   "leather"
+  ]
+ },
+ {
+  "name": "6909#",
+  "cat": "Кресло руководителя",
+  "desc": "Дизайнерское кресло с высокой спинкой и подголовником. Двухцветная обивка: тёмно-коричневый и зелёный.",
+  "price": "65 000 AMD",
+  "images": [
+   "images/chair-11.jpg"
+  ],
+  "tags": [
+   "office",
+   "leather"
+  ]
+ },
+ {
+  "name": "2357 A Black",
+  "cat": "Кресло руководителя",
+  "desc": "Высокая спинка с подголовником, чёрная обивка, хромированная крестовина.",
+  "price": "110 000 AMD",
+  "images": [
+   "images/chair-19.jpg"
+  ],
+  "tags": [
+   "office",
+   "leather"
+  ]
+ },
+ {
+  "name": "8856 B Black",
+  "cat": "Кресло для кабинета",
+  "desc": "Высокая спинка и мягкие подлокотники, чёрная обивка, хромированная крестовина на колёсиках.",
+  "price": "50 000 AMD",
+  "images": [
+   "images/chair-14.jpg"
+  ],
+  "tags": [
+   "home",
+   "office",
+   "leather"
+  ]
+ },
+ {
+  "name": "6982 A",
+  "cat": "Кресло для переговоров",
+  "desc": "Кресло на полозьях без колёс, высокая спинка. Двухцветная обивка: рыжий и графитовый.",
+  "price": "75 000 AMD",
+  "images": [
+   "images/chair-18.jpg"
+  ],
+  "tags": [
+   "office",
+   "leather"
+  ]
+ },
+ {
+  "name": "928 Black",
+  "cat": "Офисное кресло",
+  "desc": "Чёрное кресло с высокой спинкой, подголовником и подлокотниками, на колёсиках.",
+  "price": "43 000 AMD",
+  "images": [
+   "images/chair-17.jpg"
+  ],
+  "tags": [
+   "office",
+   "ergo"
+  ]
+ },
+ {
+  "name": "8080",
+  "cat": "Кресло для посетителей",
+  "desc": "Чёрное кресло на хромированных полозьях с подлокотниками. Подходит для переговорной и приёмной.",
+  "price": "27 000 AMD",
+  "images": [
+   "images/chair-7.jpg"
+  ],
+  "tags": [
+   "office",
+   "leather"
+  ]
+ },
+ {
+  "name": "8079",
+  "cat": "Кресло для посетителей",
+  "desc": "Чёрное кресло на хромированных полозьях, высокая спинка и подлокотники.",
+  "price": "30 000 AMD",
+  "images": [
+   "images/chair-12.jpg"
+  ],
+  "tags": [
+   "office",
+   "leather"
+  ]
+ },
+ {
+  "name": "8013",
+  "cat": "Кресло для посетителей",
+  "desc": "Чёрная тканевая обивка, хромированные полозья, подлокотники.",
+  "price": "16 000 AMD",
+  "images": [
+   "images/chair-16.jpg"
+  ],
+  "tags": [
+   "office",
+   "fabric"
+  ]
+ },
+ {
+  "name": "9001 C",
+  "cat": "Кресло для посетителей",
+  "desc": "Сетчатая синяя спинка, чёрное тканевое сиденье, подлокотники, каркас на полозьях.",
+  "price": "13 000 AMD",
+  "images": [
+   "images/chair-13.jpg"
+  ],
+  "tags": [
+   "office",
+   "fabric"
+  ]
+ },
+ {
+  "name": "2821",
+  "cat": "Кресло для посетителей",
+  "desc": "Сетчатая спинка и сиденье, хромированный каркас на полозьях, подлокотники.",
+  "price": "21 000 AMD",
+  "images": [
+   "images/chair-20.jpg"
+  ],
+  "tags": [
+   "office",
+   "fabric"
+  ]
+ }
+];
+var FILTERS=[["all","Все"],["home","Для дома"],["office","Для офиса"],["ergo","Эргономичные"],["leather","Кожаные"],["fabric","Тканевые"],["gaming","Игровые"]];
+/* ======================================================================== */
+function wa(t){return "https://wa.me/"+CFG.waNumber+"?text="+encodeURIComponent(t)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var cat=document.getElementById("cat"),chips=document.getElementById("chips"),sel=document.getElementById("fs");
+function render(f){
+  var n=0;cat.innerHTML="";
+  PRODUCTS.forEach(function(p){
+    if(f!=="all"&&p.tags.indexOf(f)<0)return;n++;
+    var el=document.createElement("article");el.className="card";
+    var im=p.images||[],th=im.length>1?'<div class="th">'+im.map(function(u,i){return '<img loading="lazy" class="'+(i?'':'on')+'" src="'+esc(u)+'" alt="">'}).join('')+'</div>':'';
+    el.innerHTML='<div class="ph">'+(im[0]?'<img loading="lazy" src="'+esc(im[0])+'" alt="'+esc(p.name)+'">':'Добавьте фото')+'</div>'+th+'<div class="cb"><span class="tg">'+esc(p.cat||"")+'</span><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p><div class="price">'+(p.price?esc(p.price):'Уточнить цену')+'</div><a class="btn btn-a" target="_blank" rel="noopener" href="'+wa("Здравствуйте! Хочу заказать стул: "+p.name)+'">Заказать в WhatsApp</a></div>';
+    [].forEach.call(el.querySelectorAll(".th img"),function(t){t.onclick=function(){el.querySelector(".ph img").src=t.src;[].forEach.call(el.querySelectorAll(".th img"),function(x){x.classList.remove("on")});t.classList.add("on")}});
+    cat.appendChild(el);
+  });
+  document.getElementById("empty").style.display=n?"none":"block";
+}
+FILTERS.forEach(function(x,i){
+  var b=document.createElement("button");b.className="chip"+(i?"":" on");b.textContent=x[1];
+  b.onclick=function(){[].forEach.call(chips.children,function(c){c.classList.remove("on")});b.classList.add("on");render(x[0])};
+  chips.appendChild(b);
+});
+PRODUCTS.forEach(function(p){var o=document.createElement("option");o.textContent=p.name;sel.appendChild(o)});
+render("all");
+[].forEach.call(document.querySelectorAll("a.wa"),function(a){a.href=wa("Здравствуйте! Хочу заказать офисный стул.");a.target="_blank";a.rel="noopener"});
+var tel=document.getElementById("cTel");
+if(CFG.phone){tel.href="tel:"+CFG.phone.replace(/[^+\d]/g,"");tel.lastChild.textContent=CFG.phone}else{tel.href="#contacts"}
+if(CFG.telegram){["cTg","fTg"].forEach(function(id){document.getElementById(id).href="https://t.me/"+CFG.telegram})}
+else{document.getElementById("cTg").style.display="none";document.getElementById("fTg").style.display="none"}
+document.getElementById("cMap").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(CFG.mapsQuery);
+if(CFG.hero)document.querySelector(".hero").style.setProperty("--hero","url('"+CFG.hero+"')");
+if(CFG.aboutPhoto)document.getElementById("aboutPh").innerHTML='<img loading="lazy" src="'+esc(CFG.aboutPhoto)+'" alt="Magnetix">';
+document.getElementById("y").textContent=new Date().getFullYear();
+document.getElementById("f").onsubmit=function(e){
+  e.preventDefault();
+  window.open(wa("Здравствуйте! Меня зовут "+document.getElementById("fn").value+". Телефон: "+document.getElementById("fp").value+". Хочу заказать стул: "+sel.value),"_blank");
+};
+</script>
+</body>
+</html>
